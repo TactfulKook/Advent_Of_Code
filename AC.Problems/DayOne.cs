@@ -13,7 +13,7 @@ public class DayOne(ITextFileReader textFileReader) : IProblem
     private List<long> firstColumn { get; set; } = new List<long>();
     private List<long> secondColumn { get; set; } = new List<long>();
 
-    public void Solve(int half)
+    public string Solve(int half)
     {
         var fileContent = _textFileReader.ReadFile(fileName);
 
@@ -21,19 +21,19 @@ public class DayOne(ITextFileReader textFileReader) : IProblem
 
         if (half == 1)
         {
-            FirstHalf();
+            return FirstHalf();
         }
         else if (half == 2)
         {
-            SecondHalf();
+            return SecondHalf();
         }
         else 
         {
-            Console.WriteLine(WrongHalfNumber, half);
+            return string.Format(WrongHalfNumber, half);
         }
     }
 
-    private void FirstHalf()
+    private string FirstHalf()
     {
         long totalDistance = 0;
 
@@ -42,10 +42,10 @@ public class DayOne(ITextFileReader textFileReader) : IProblem
             totalDistance += Math.Abs(firstColumn[i] - secondColumn[i]);
         }
 
-        Console.WriteLine(FirstAnswerMessage, totalDistance);
+        return string.Format(FirstAnswerMessage, totalDistance);
     }
 
-    private void SecondHalf()
+    private string SecondHalf()
     {
         long similarityScore = 0;
 
@@ -56,7 +56,7 @@ public class DayOne(ITextFileReader textFileReader) : IProblem
             similarityScore += (appearances * firstColumn[i]);
         }
 
-        Console.WriteLine(SecondAnswerMessage, similarityScore);
+        return string.Format(SecondAnswerMessage, similarityScore);
     }
 
     private void InitializeLists(string fileContent)

@@ -1,6 +1,7 @@
 ﻿using AC.Problems;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.Diagnostics;
 
 namespace Advent_of_Code;
 
@@ -14,6 +15,7 @@ public class Worker(IServiceProvider serviceProvider) : IHostedService
     private const string FaultyPromptText = "\nFaulty Prompt given: {0}. Try again. \n";
     private const string NoPromptFound = "\nNo Problem number {0} found. Try again. \n";
     private const string DayPrompt = "\nSolving {0} Problem, which half would you like to solve? \n";
+    private const string ExecutionTime = "\nExecution took {0} ticks";
 
     private readonly Dictionary<int, Type> Problems = new Dictionary<int, Type>()
     {
@@ -48,7 +50,13 @@ public class Worker(IServiceProvider serviceProvider) : IHostedService
                         {
                             var problem = (IProblem)ActivatorUtilities.CreateInstance(ServiceProvider, problemType);
 
-                            problem.Solve(half);
+                            Stopwatch stopWatch = new();
+                            stopWatch.Start();
+                            var answerMessage = problem.Solve(half);
+                            stopWatch.Stop();
+                            Console.WriteLine(ExecutionTime, stopWatch.ElapsedTicks);
+                            Console.WriteLine(answerMessage);
+
                         }
                         else
                         {

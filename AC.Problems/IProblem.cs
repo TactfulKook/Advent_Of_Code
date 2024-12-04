@@ -2,5 +2,5 @@
 
 public interface IProblem
 {
-    void Solve(int half);
+    string Solve(int half);
 }

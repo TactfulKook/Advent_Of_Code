@@ -18,25 +18,25 @@ public partial class DayThree(ITextFileReader textFileReader) : IProblem
     private const string DoString = "do()";
     private const string DontString = "don't()";
 
-    public void Solve(int half)
+    public string Solve(int half)
     {
         var fileContent = _textFileReader.ReadFile(fileName);
 
         if (half == 1)
         {
-            FirstHalf(fileContent);
+            return FirstHalf(fileContent);
         }
         else if (half == 2)
         {
-            SecondHalf(fileContent);
+            return SecondHalf(fileContent);
         }
         else
         {
-            Console.WriteLine(WrongHalfNumber, half);
+            return string.Format(WrongHalfNumber, half);
         }
     }
 
-    private static void FirstHalf(string fileContent)
+    private static string FirstHalf(string fileContent)
     {
         long result = 0;
 
@@ -57,10 +57,10 @@ public partial class DayThree(ITextFileReader textFileReader) : IProblem
             }
         }
 
-        Console.WriteLine(AnswerMessage, result);
+        return string.Format(AnswerMessage, result);
     }
 
-    private void SecondHalf(string fileContent)
+    private string SecondHalf(string fileContent)
     {
         long result = 0;
 
@@ -83,7 +83,7 @@ public partial class DayThree(ITextFileReader textFileReader) : IProblem
             }
         }
 
-        Console.WriteLine(AnswerMessage, result);
+        return string.Format(AnswerMessage, result);
     }
 
     private List<string> TrimMultiplications(MatchCollection multiplications)

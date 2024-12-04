@@ -17,7 +17,7 @@ public class DayTwo(ITextFileReader textFileReader) : IProblem
 
     private List<List<int>> reports = new List<List<int>>();
 
-    public void Solve(int half)
+    public string Solve(int half)
     {
         var fileContent = _textFileReader.ReadFile(fileName);
 
@@ -25,19 +25,19 @@ public class DayTwo(ITextFileReader textFileReader) : IProblem
 
         if (half == 1)
         {
-            FirstHalf();
+            return FirstHalf();
         }
         else if (half == 2)
         {
-            SecondHalf();
+            return SecondHalf();
         }
         else
         {
-            Console.WriteLine(WrongHalfNumber, half);
+            return string.Format(WrongHalfNumber, half);
         }
     }
 
-    private void FirstHalf()
+    private string FirstHalf()
     {
         int safeReports = 0;
 
@@ -56,10 +56,10 @@ public class DayTwo(ITextFileReader textFileReader) : IProblem
             }
         }
 
-        Console.WriteLine(AnswerMessage, safeReports);
+        return string.Format(AnswerMessage, safeReports);
     }
 
-    private void SecondHalf()
+    private string SecondHalf()
     {
         int safeReports = 0;
 
@@ -91,7 +91,7 @@ public class DayTwo(ITextFileReader textFileReader) : IProblem
             }
         }
 
-        Console.WriteLine(AnswerMessage, safeReports);
+        return string.Format(AnswerMessage, safeReports);
     }
 
     private static (bool, int) CheckIfSafe(List<int> report)

@@ -14,7 +14,7 @@ public class DayFour(ITextFileReader textFileReader) : IProblem
     private readonly List<(int, int)> XmasDirections = [(-1, -1), (-1, 0), (-1, 1), (0, -1), (0, 0), (0, 1), (1, -1), (1, 0), (1, 1)];
     private readonly List<(int, int)> MasDirections = [(-1, -1), (-1, 1), (1, -1), (1, 1)];
 
-    private void FirstHalf()
+    private string FirstHalf()
     {
         long result = 0;
 
@@ -48,10 +48,10 @@ public class DayFour(ITextFileReader textFileReader) : IProblem
             }
         }
 
-        Console.WriteLine(AnswerMessage, result);
+        return string.Format(AnswerMessage, result);
     }
 
-    private void SecondHalf()
+    private string SecondHalf()
     {
         var result = 0;
 
@@ -76,29 +76,19 @@ public class DayFour(ITextFileReader textFileReader) : IProblem
                     masCount++;
                 }
 
-                if (masCount == 1)
-                {
-                    Console.WriteLine(LetterTable[i - 1].Substring(j - 1, 3));
-                    Console.WriteLine(LetterTable[i].Substring(j - 1, 3));
-                    Console.WriteLine(LetterTable[i + 1].Substring(j - 1, 3) + "\n");
-                }
                 if (masCount == 2)
                 {
                     result++;
-                }
-                if (masCount > 2)
-                {
-                    Console.WriteLine("WTF");
                 }
 
                 j = LetterTable[i].IndexOf('A', j + 1);
             }
         }
 
-        Console.WriteLine(AnswerMessage, result);
+        return string.Format(AnswerMessage, result);
     }
 
-    public void Solve(int half)
+    public string Solve(int half)
     {
         var fileContent = _textFileReader.ReadFile(fileName);
 
@@ -106,15 +96,15 @@ public class DayFour(ITextFileReader textFileReader) : IProblem
 
         if (half == 1)
         {
-            FirstHalf();
+            return FirstHalf();
         }
         else if (half == 2)
         {
-            SecondHalf();
+            return SecondHalf();
         }
         else
         {
-            Console.WriteLine(WrongHalfNumber, half);
+            return string.Format(WrongHalfNumber, half);
         }
     }
 

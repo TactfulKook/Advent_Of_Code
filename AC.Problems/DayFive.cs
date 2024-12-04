@@ -11,7 +11,7 @@ public class DayFive(ITextFileReader textFileReader) : IProblem
 {
     private readonly ITextFileReader _textFileReader = textFileReader;
 
-    public void Solve(int half)
+    public string Solve(int half)
     {
         throw new NotImplementedException();
     }
