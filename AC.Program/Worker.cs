@@ -23,6 +23,7 @@ public class Worker(IServiceProvider serviceProvider) : IHostedService
         { 2, typeof(DayTwo) },
         { 3, typeof(DayThree) },
         { 4, typeof(DayFour) },
+        { 5, typeof(Day05) },
     };
 
     private readonly IServiceProvider ServiceProvider = serviceProvider;
